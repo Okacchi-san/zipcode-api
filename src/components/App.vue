@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="container">
     <form>
       <table>
         <tbody>
@@ -11,21 +11,18 @@
               <p id="error"></p>
             </td>
           </tr>
-
           <tr>
             <th>都道府県</th>
             <td>
               <input id="address1" type="text" name="address1" value="">
             </td>
           </tr>
-
           <tr>
             <th>市町村</th>
             <td>
               <input id="address2" type="text" name="address2" value="">
             </td>
           </tr>
-
           <tr>
             <th>町域</th>
             <td>
@@ -40,13 +37,17 @@
 
 <script>
 export default{
+  data: function(){
+    return{
 
+    }
+  }
 };
 </script>
 
 <style scoped>
 
-#app {
+#container {
   width: 96%;
   max-width: 500px;
   margin: 40px auto;
