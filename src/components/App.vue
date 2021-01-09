@@ -6,8 +6,8 @@
           <tr>
             <th>郵便番号</th>
             <td>
-              <input id="input" class="zipcode" type="text" name="zipcode" value="" placeholder="例)1110000">
-              <button id="seach" type="button">住所検索</button>
+              <input id="input" class="zipcode" type="text" name="zipcode" v-model="zipcode" placeholder="例)1110000">
+              <button @click="onSearchclicked" id="seach" type="button">住所検索</button>
               <p id="error"></p>
             </td>
           </tr>
@@ -39,7 +39,25 @@
 export default{
   data: function(){
     return{
+      zipcode: '',
+      addressData: {}
+    }
+  },
+  methods: {
+    onSearchclicked(){
 
+    const response = fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${this.zipcode}`);
+
+    response.then((value) => {
+      const json = value.json();
+      json.then(v => {
+        this.addressData = v.results[0];
+        console.log(this.addressData)
+        address1.value = `${this.addressData['address1']} (${this.addressData['kana1']})`;
+        address2.value = `${this.addressData['address2']} (${this.addressData['kana2']})`;
+        address3.value = `${this.addressData['address3']} (${this.addressData['kana3']})`;
+      })
+    })
     }
   }
 };
